@@ -1,0 +1,93 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Task_4_4._2.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:infrastructure="clr-namespace:Task_4_4._2.Infrastructure"
+        mc:Ignorable="d" Width="900" Height="600"
+        x:Class="Task_4_4._2.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Task_4_4._2">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid
+	ShowGridLines="False"
+	RowDefinitions="50,*"
+	ColumnDefinitions="*,200">
+		<StackPanel Grid.Row="0" Grid.Column="0"
+					Margin="0, 5, 0, 0"
+					>
+			<Canvas>
+				<Line StartPoint="0,45" EndPoint="900,45" Stroke="Black" > </Line>
+				<Line StartPoint="0,5" EndPoint="900,0" Stroke="Black" > </Line>
+			</Canvas>
+			<StackPanel
+				Margin="0, 7, 0, 0"
+					  Orientation="Horizontal"
+					  FlowDirection="LeftToRight">
+				<Button Width="" Background="white">Home</Button>
+				<Button Width="" Background="white">About </Button>
+				<Button Width="" Background="white">Blog`s Main Topic 1 </Button>
+				<Button Width="" Background="white">Blog`s Main Topic 2 </Button>
+				<Button Width="" Background="white">Blog`s Main Topic 3 </Button>
+				<Button Width="" Background="white">Associated blogs </Button>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Grid.Row="0" Grid.Column="1"
+					Orientation="Horizontal"
+					FlowDirection="RightToLeft"
+					Margin="10">
+			<Button Width="" Background="White">RSS</Button>
+		</StackPanel>
+
+		<ListBox ItemsSource="{Binding NewsEntities}" Grid.Row="1" Grid.Column="1">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel
+								Orientation="Vertical"
+								Margin="15">
+						<TextBlock TextWrapping="Wrap" Text="{Binding Text1}"> </TextBlock>
+						<TextBlock TextDecorations="Underline" Margin="130,10,1,1"> More</TextBlock>
+						<TextBlock Margin="30,1,1,1" Text="{Binding PublishDate}">  </TextBlock>
+						<TextBlock TextWrapping="Wrap" Margin="1,20,1,1" Text="{Binding Text2}">  </TextBlock>
+						<TextBlock TextDecorations="Underline" Margin="130,10,1,1"> More</TextBlock>
+						<TextBlock Margin="30,1,1,1" Text="{Binding PublishDate}">  </TextBlock>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<ListBox ItemsSource="{Binding BlogEntities}" Grid.Row="1" Grid.Column="0">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel 
+							Orientation="Vertical"
+							Margin="15">
+					<TextBlock Text="{Binding Article}"> </TextBlock>
+					<TextBlock Margin="1,20,1,1" TextWrapping="Wrap">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas ut leo non euismod. Aliquam dui est, mattis eget nulla ac, rutrum porta nibh. Proin ultricies sollicitudin enim rutrum ornare. Mauris risus arcu, consectetur sit amet sem quis, tempor ultrices lorem. Donec sodales ligula sed gravida maximus. Integer tincidunt purus eu libero auctor, vitae dapibus risus condimentum. Proin laoreet euismod nisl, id rhoncus elit ultricies hendrerit. Curabitur vitae sapien eget dui malesuada ullamcorper at at dui. Maecenas mi elit, finibus quis felis id, accumsan vestibulum enim. Nulla quam elit, ultricies vitae purus non, sodales molestie dui. Sed faucibus arcu at luctus blandit. In hac habitasse platea dictumst. Sed rhoncus nulla ut orci viverra ultrices. Integer id diam orci. Suspendisse feugiat odio quis mi facilisis euismod. Ut ac mollis purus, at vestibulum sem. Nunc in finibus nunc. Vestibulum feugiat malesuada lorem, ac egestas lectus. Aenean dignissim purus in consequat pharetra. Integer hendrerit erat ut scelerisque accumsan. Mauris nulla libero, cursus in velit at, ullamcorper aliquam metus.
+					</TextBlock>
+					<Image Margin="20, 15, 20, 1" Width="350" Height="200" Stretch="UniformToFill" Source="{Binding ImagePath, Converter={x:Static infrastructure:BitmapValueConverter.Instance}}"> </Image>
+					<Grid RowDefinitions="*"
+						  ColumnDefinitions="50,50,50,50,50,*">
+						<TextBlock Grid.Column="0" Margin="1,45,1,1" > Tags: </TextBlock>
+						<TextBlock Grid.Column="1" Margin="1,45,1,1" Text="{Binding TagsList[0]}">  </TextBlock>
+						<TextBlock Grid.Column="2" Margin="1,45,1,1" Text="{Binding TagsList[1]}"> </TextBlock>
+						<TextBlock Grid.Column="3" Margin="1,45,1,1" Text="{Binding TagsList[2]}"> </TextBlock>
+						<TextBlock Grid.Column="4" Margin="1,45,1,1" Text="{Binding TagsList[3]}">  </TextBlock>
+						<TextBlock Grid.Column="5" Margin="270,45,1,1"> Rate this article: 4/5 </TextBlock>
+					</Grid>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+
+</Window>
