@@ -76,18 +76,14 @@
 					</TextBlock>
 					<Image Margin="20, 15, 20, 1" Width="350" Height="200" Stretch="UniformToFill" Source="{Binding ImagePath, Converter={x:Static infrastructure:BitmapValueConverter.Instance}}"> </Image>
 					<Grid RowDefinitions="*"
-						  ColumnDefinitions="50,50,50,50,50,*">
+						  ColumnDefinitions="50,*,400">
 						<TextBlock Grid.Column="0" Margin="1,45,1,1" > Tags: </TextBlock>
-						<TextBlock Grid.Column="1" Margin="1,45,1,1" Text="{Binding TagsList[0]}">  </TextBlock>
-						<TextBlock Grid.Column="2" Margin="1,45,1,1" Text="{Binding TagsList[1]}"> </TextBlock>
-						<TextBlock Grid.Column="3" Margin="1,45,1,1" Text="{Binding TagsList[2]}"> </TextBlock>
-						<TextBlock Grid.Column="4" Margin="1,45,1,1" Text="{Binding TagsList[3]}">  </TextBlock>
-						<TextBlock Grid.Column="5" Margin="270,45,1,1"> Rate this article: 4/5 </TextBlock>
+						<ListBox Grid.Column="1"  Margin="1,40,1,1" ItemsSource="{Binding TagsList}" />
+						<TextBlock Grid.Column="5" Margin="270,40,1,1"> Rate this article: 4/5 </TextBlock>
 					</Grid>
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
 	</Grid>
-
 </Window>
